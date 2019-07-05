@@ -1,0 +1,209 @@
+@charset "UTF-8";
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  font: 16px/1.8 sans-serif;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuODQxNTA2IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjE1ODQ5NCIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U2ZjBmYyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2JkZTVkMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(120deg, #e6f0fc, #bde5d1);
+  background-image: -webkit-linear-gradient(120deg, #e6f0fc, #bde5d1);
+  background-image: linear-gradient(-30deg, #e6f0fc, #bde5d1);
+}
+
+.todoList {
+  -moz-box-shadow: 0 4px 16px #aaa;
+  -webkit-box-shadow: 0 4px 16px #aaa;
+  box-shadow: 0 4px 16px #aaa;
+  width: 500px;
+  margin: 30px auto;
+  border-top: solid 8px teal;
+}
+.todoList > * {
+  padding: 10px 20px;
+}
+.todoList h1 {
+  margin: 0;
+  background: #fff;
+  line-height: 1;
+}
+.todoList .items {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  padding: 20px;
+  counter-reset: done-items pending-items;
+}
+.todoList h2 {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  line-height: 1;
+  position: relative;
+}
+.todoList h2::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -20px;
+  top: 15%;
+  width: 1px;
+  height: 70%;
+  border-left: solid 4px teal;
+}
+.todoList h2::after {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  display: block;
+  float: right;
+  background: teal;
+  color: #fff;
+  padding: 4px;
+  min-width: 1.5em;
+  text-align: center;
+}
+.todoList .done {
+  -webkit-order: 1;
+  order: 1;
+}
+.todoList .done::after {
+  content: counter(done-items);
+}
+.todoList .pending {
+  -webkit-order: 3;
+  order: 3;
+}
+.todoList .pending::after {
+  content: counter(pending-items);
+}
+.todoList input {
+  position: absolute;
+  left: -999px;
+}
+.todoList input:focus + label {
+  background: rgba(255, 255, 255, 0.4);
+}
+.todoList input:checked + label {
+  -webkit-order: 2;
+  order: 2;
+  -moz-animation: done 0.6s;
+  -webkit-animation: done 0.6s;
+  animation: done 0.6s;
+  counter-increment: done-items;
+}
+.todoList input:checked + label::before {
+  content: "*";
+}
+.todoList label {
+  -webkit-order: 4;
+  order: 4;
+  -moz-animation: pending 0.6s;
+  -webkit-animation: pending 0.6s;
+  animation: pending 0.6s;
+  display: block;
+  position: relative;
+  padding: 10px 0 10px 40px;
+  border-top: dashed 1px #fff;
+  cursor: pointer;
+  counter-increment: pending-items;
+}
+.todoList label:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.todoList label::before {
+  content: "*";
+  font: 28px "FontAwesome";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top: 11px;
+}
+
+@-moz-keyframes done {
+  0% {
+    -moz-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+@-webkit-keyframes done {
+  0% {
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+@keyframes done {
+  0% {
+    -moz-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+@-moz-keyframes pending {
+  0% {
+    -moz-transform: translateY(-20px);
+    transform: translateY(-20px);
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+@-webkit-keyframes pending {
+  0% {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+@keyframes pending {
+  0% {
+    -moz-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
